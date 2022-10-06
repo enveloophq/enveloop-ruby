@@ -21,9 +21,11 @@ module Enveloop
         }
       )
 
-      conn.post("/templates/#{template}") do |req|
+      response = conn.post("/templates/#{template}") do |req|
         req.body = data.to_json
       end
+
+      return Response.new(status: response.status, body: response.body)
     end
   end
 end
