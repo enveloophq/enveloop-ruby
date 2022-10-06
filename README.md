@@ -1,8 +1,6 @@
 # Enveloop
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/enveloop`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+enveloop-ruby is a ruby wrapper for the Enveloop API. It allows easy use of the API to send messages.
 
 ## Installation
 
@@ -22,7 +20,21 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+require 'enveloop'
+
+enveloop = Enveloop::Client.new(api_key: ENV['ENVELOOP_API_TOKEN'])
+
+enveloop.send_message(
+  template: 'welcome-email',
+  to: 'user@email.com',
+  from: 'welcome@myapp.com',
+  subject: 'Welcome to MyApp',
+  user_variables: {
+    first_name: 'John',
+  }
+)
+```
 
 ## Development
 
