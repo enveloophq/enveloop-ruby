@@ -20,6 +20,8 @@ Or install it yourself as:
 
 ## Usage
 
+SEnd a message: 
+
 ```ruby
 require 'enveloop'
 
@@ -34,6 +36,16 @@ enveloop.send_message(
     first_name: 'John',
   }
 )
+```
+
+Get information about a template (variables and body html):
+
+```ruby
+require 'enveloop'
+
+enveloop = Enveloop::Client.new(api_key: ENV['ENVELOOP_API_TOKEN'])
+
+enveloop.template_info(template: 'welcome-email')
 ```
 
 ## Development
