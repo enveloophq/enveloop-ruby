@@ -25,7 +25,21 @@ module Enveloop
         req.body = data.to_json
       end
 
-      return Response.new(status: response.status, body: response.body)
+      return MessageResponse.new(status: response.status, body: response.body)
+    end
+
+    def template_info(template:)
+      conn = Faraday.new(
+        url: @endpoint,
+        headers: {
+          "Content-Type" => "application/json",
+          "Authorization" => "token #{@api_key}"
+        }
+      )
+
+      response = conn.get("/templates/#{template}")
+
+      return TemplateResponse.new(status: response.status, body: response.body)
     end
   end
 end
