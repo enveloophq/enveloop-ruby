@@ -5,12 +5,12 @@ module Enveloop
       @api_key = api_key
     end
 
-    def send_message(template:, to:, from:, subject:, user_variables: {})
+    def send_message(template:, to:, from:, subject:, template_variables: {})
       data = {
         to: to,
         from: from,
         subject: subject,
-        userVariables: user_variables
+        templateVariables: template_variables
       }
 
       conn = Faraday.new(

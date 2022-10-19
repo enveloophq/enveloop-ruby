@@ -12,3 +12,7 @@
 > ## Version 0.1.2
 
 * add `template_info` to fetch the template body and see waht variables are defined on a template
+
+> ## Version 0.1.3
+
+* change `user_variables` to `template_variables` in API call
