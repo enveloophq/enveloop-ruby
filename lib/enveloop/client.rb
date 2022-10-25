@@ -10,7 +10,7 @@ module Enveloop
         to: to,
         from: from,
         subject: subject,
-        templateVariables: template_variables,
+        templateVariables: template_variables
       }
 
       conn = Faraday.new(
