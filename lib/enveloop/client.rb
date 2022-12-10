@@ -10,6 +10,7 @@ module Enveloop
         to: to,
         from: from,
         subject: subject,
+        template: template,
         templateVariables: template_variables
       }
 
@@ -22,7 +23,7 @@ module Enveloop
         }
       )
 
-      response = conn.post("/templates/#{template}") do |req|
+      response = conn.post('/messages') do |req|
         req.body = data.to_json
       end
 
