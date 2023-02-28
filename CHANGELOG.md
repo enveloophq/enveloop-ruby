@@ -26,3 +26,7 @@
 > ## Version 0.1.5
 
 * Use new `/messages` endpoint
+
+> ## Version 0.1.6
+
+* Raise ruby errors when an error is encountered in the API

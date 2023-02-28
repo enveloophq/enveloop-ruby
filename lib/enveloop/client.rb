@@ -27,6 +27,10 @@ module Enveloop
         req.body = data.to_json
       end
 
+      if response.status == 500
+        raise Enveloop::Error.new(JSON.parse(response.body)['error'])
+      end
+
       return MessageResponse.new(status: response.status, body: response.body)
     end
 
@@ -41,6 +45,10 @@ module Enveloop
 
       response = conn.get("/templates/#{template}")
 
+      if response.status == 500
+        raise Enveloop::Error.new(JSON.parse(response.body)['error'])
+      end
+      
       return TemplateResponse.new(status: response.status, body: response.body)
     end
   end
