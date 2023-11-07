@@ -51,7 +51,7 @@ enveloop.template_info(template: 'welcome-email')
 ```
 ### Rails
 
-Add the following to your initializer and send Action::Mailer messaegs with Enveloop as well
+Add the following to your initializer and send Active::Mailer messaegs with Enveloop as well
 
 ```ruby
 config.action_mailer.delivery_method = :enveloop
