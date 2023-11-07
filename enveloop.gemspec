@@ -17,6 +17,7 @@ Gem::Specification.new do |spec|
   spec.metadata["changelog_uri"] = "https://github.com/enveloophq/ruby_enveloop/blob/master/CHANGELOG.md"
 
   spec.add_dependency "faraday"
+  spec.add_development_dependency "rails"
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
