@@ -34,4 +34,4 @@
 > ## Version 0.2.0
 
 * Add support for Rails via ActiveMailer
-* Add sendRaw method to send HTML email without a template
+* Add `send_raw` method to send HTML email without a template

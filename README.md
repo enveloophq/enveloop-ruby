@@ -20,6 +20,8 @@ Or install it yourself as:
 
 ## Usage
 
+### Ruby (direct usage)
+
 Setup the client connection:
 
 ```ruby
@@ -46,6 +48,16 @@ Get information about a template (variables and body html):
 
 ```ruby
 enveloop.template_info(template: 'welcome-email')
+```
+### Rails
+
+Add the following to your initializer
+
+```ruby
+config.action_mailer.delivery_method = :enveloop
+config.action_mailer.enveloop_settings = { 
+  api_key: ENV['ENVELOOP_API_TOKEN']
+}
 ```
 
 ## Development
