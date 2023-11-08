@@ -5,12 +5,13 @@ module Enveloop
       @api_key = api_key
     end
 
-    def send_message(template:, to:, from: nil, subject: nil, template_variables: {})
+    def send_message(to:, template: nil, html: nil, from: nil, subject: nil, template_variables: {})
       data = {
         to: to,
         from: from,
         subject: subject,
         template: template,
+        html: html,
         templateVariables: template_variables
       }
 

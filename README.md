@@ -30,7 +30,7 @@ require 'enveloop'
 enveloop = Enveloop::Client.new(api_key: ENV['ENVELOOP_API_TOKEN'])
 ```
 
-Send a message: 
+Send a message using a template:
 
 ```ruby
 enveloop.send_message(
@@ -41,6 +41,17 @@ enveloop.send_message(
   template_variables: {
     first_name: 'John',
   }
+)
+```
+
+Send a message passing HTML body:
+
+```ruby
+enveloop.send_message(
+  html: '<h1>Hello John, Welcome to MyApp</h1>',
+  to: 'user@email.com',
+  from: 'welcome@myapp.com',
+  subject: 'Welcome to MyApp',
 )
 ```
 
