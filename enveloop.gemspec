@@ -8,13 +8,13 @@ Gem::Specification.new do |spec|
 
   spec.summary       = "Envelope API wrapper"
   spec.description   = "This gem provides a wrapper for the Envelope API."
-  spec.homepage      = "https://github.com/enveloophq/ruby_enveloop"
+  spec.homepage      = "https://github.com/enveloophq/enveloop-ruby"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/enveloophq/ruby_enveloop"
-  spec.metadata["changelog_uri"] = "https://github.com/enveloophq/ruby_enveloop/blob/master/CHANGELOG.md"
+  spec.metadata["source_code_uri"] = "https://github.com/enveloophq/enveloop-ruby"
+  spec.metadata["changelog_uri"] = "https://github.com/enveloophq/enveloop-ruby/blob/master/CHANGELOG.md"
 
   spec.add_dependency "faraday"
   spec.add_development_dependency "rails"
