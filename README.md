@@ -20,6 +20,8 @@ Or install it yourself as:
 
 ## Usage
 
+### Ruby (direct usage)
+
 Setup the client connection:
 
 ```ruby
@@ -28,7 +30,7 @@ require 'enveloop'
 enveloop = Enveloop::Client.new(api_key: ENV['ENVELOOP_API_TOKEN'])
 ```
 
-Send a message: 
+Send a message using a template:
 
 ```ruby
 enveloop.send_message(
@@ -42,10 +44,31 @@ enveloop.send_message(
 )
 ```
 
+Send a message passing HTML body:
+
+```ruby
+enveloop.send_message(
+  html: '<h1>Hello John, Welcome to MyApp</h1>',
+  to: 'user@email.com',
+  from: 'welcome@myapp.com',
+  subject: 'Welcome to MyApp',
+)
+```
+
 Get information about a template (variables and body html):
 
 ```ruby
 enveloop.template_info(template: 'welcome-email')
+```
+### Rails
+
+Add the following to your initializer and send Active::Mailer messaegs with Enveloop as well
+
+```ruby
+config.action_mailer.delivery_method = :enveloop
+config.action_mailer.enveloop_settings = { 
+  api_key: ENV['ENVELOOP_API_TOKEN']
+}
 ```
 
 ## Development

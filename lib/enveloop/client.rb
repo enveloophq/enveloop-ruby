@@ -5,12 +5,13 @@ module Enveloop
       @api_key = api_key
     end
 
-    def send_message(template:, to:, from: nil, subject: nil, template_variables: {})
+    def send_message(to:, template: nil, html: nil, from: nil, subject: nil, template_variables: {})
       data = {
         to: to,
         from: from,
         subject: subject,
         template: template,
+        html: html,
         templateVariables: template_variables
       }
 
@@ -24,6 +25,31 @@ module Enveloop
       )
 
       response = conn.post('/messages') do |req|
+        req.body = data.to_json
+      end
+
+      if response.status == 500
+        raise Enveloop::Error.new(JSON.parse(response.body)['error'])
+      end
+
+      return MessageResponse.new(status: response.status, body: response.body)
+    end
+
+    def send_raw(email:)
+      data = {
+        email: email
+      }
+
+      conn = Faraday.new(
+        url: @endpoint,
+        headers: {
+          "Content-Type" => "application/json",
+          "Authorization" => "token #{@api_key}",
+          "Sdk-Version" => "ruby-#{Enveloop::VERSION}"
+        }
+      )
+
+      response = conn.post('/messages/rawEmail') do |req|
         req.body = data.to_json
       end
 

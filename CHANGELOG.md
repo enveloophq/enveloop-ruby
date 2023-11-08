@@ -30,3 +30,8 @@
 > ## Version 0.1.6
 
 * Raise ruby errors when an error is encountered in the API
+
+> ## Version 0.2.0
+
+* Add support for Rails via ActiveMailer
+* Add `send_raw` method to send HTML email without a template
