@@ -54,9 +54,8 @@ enveloop.send_message(
 )
 ```
 
-If you want to send a message, via Enveloop, and not use an Enveloop template, you can remove the `template` argument from the method and include the `html` argument instead -- it takes a custom HTML body and creates a structured email message to send out.
-
 #### Send an email message passing custom HTML
+If you want to send a message, via Enveloop, and not use an Enveloop template, you can remove the `template` argument from the method and include the `html` argument instead _(it takes a custom HTML body and creates a structured email message to send out)_.
 
 ```ruby
 enveloop.send_message(
@@ -99,21 +98,52 @@ unless Rails.env.production?
 end
 
 config.action_mailer.delivery_method = :enveloop
+
 config.action_mailer.enveloop_settings = { 
   api_key: ENV['ENVELOOP_API_TOKEN']
 }
 ```
 
+#### Create an Enveloop Mailer
+From your command line, use a Rails generator to create a new Enveloop Mailer.
+```console
+$ rails generate mailer EnveloopMailer
+```
 
-
-
-Add the following to your initializer and send Active::Mailer messaegs with Enveloop as well
+#### Modify your Enveloop Mailer 
+Now that the mailer is created, you can modify it and add in a custom method, based on your application, to call the `send_message` method in the Enveloop API.
 
 ```ruby
-config.action_mailer.delivery_method = :enveloop
-config.action_mailer.enveloop_settings = { 
-  api_key: ENV['ENVELOOP_API_TOKEN']
-}
+class EnveloopMailer < ActionMailer::Base
+
+   include Rails.application.routes.url_helpers 
+
+   def new_comment_email(recipient, comment)
+      enveloop.send_message(
+         template: 'new-comment',
+         to: recipient,
+         from: 'hello@myapp.com',
+         subject: subject,
+         template_variables:{
+            account_url: 'https://myapp.com',
+            user_comment: comment
+         }
+      )
+   end
+
+   private
+
+   def enveloop
+      @enveloop ||= Enveloop::Client.new(api_key: ENV['ENVELOOP_API_KEY']) 
+   end
+
+end
+```
+
+#### Sending a message in your Rails app
+Now, all that is left is to make a call to send a message, via Enveloop, whenever you need it.
+```ruby
+EnveloopMailer.new_comment_email(@comment.user_email_address, @comment.body).deliver_now
 ```
 
 ## Development
