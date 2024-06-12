@@ -1,20 +1,20 @@
 # Enveloop Ruby
-`enveloop-ruby` is a Ruby wrapper for the Enveloop API. It simplifies configuring and sending messages (email & text) via Enveloop inside your Ruby and Ruby on Rails apps.
+`enveloop-ruby` is a Ruby wrapper for the [Enveloop](https://enveloop.com) API. It simplifies configuring and sending messages (email & SMS/text) via Enveloop inside your Ruby and Ruby on Rails apps.
 
 ## Installation
-There are a couple of ways to get started. Using [RubyGems](https://rubygems.org/), you can install locally with the following command:
+There are a couple of ways to get started. Using [RubyGems](https://rubygems.org/), you can install it locally with the following command:
 ```console
-gem install enveloop
+$ gem install enveloop
 ```
 
-Additionall`y, you can add the following to your application Gemfile:
+Additionally, you can add the following to your application's Gemfile:
 ```ruby
 gem 'enveloop'
 ```
 
 After doing so, you can run the following terminal command:
 ```console
-bundle install
+$ bundle install
 ```
 
 ## Using the Enveloop Gem
@@ -36,10 +36,11 @@ enveloop = Enveloop::Client.new(api_key:`ENVELOOP_API_TOKEN')
 ```
 
 Now that your connection is established, let's use a method to send a message.
+
 _(Note: This method call assumes that you have created a basic template in Enveloop and provides an example of a template variable you may use. Please alter according to how you have set up your template.)_
 
 
-**Send an email message using an Enveloop template:**
+#### Send an email message using an Enveloop template:
 
 ```ruby
 enveloop.send_message(
@@ -55,7 +56,7 @@ enveloop.send_message(
 
 If you want to send a message, via Enveloop, and not use an Enveloop template, you can remove the `template` argument from the method and include the `html` argument instead -- it takes a custom HTML body and creates a structured email message to send out.
 
-**Send an email message passing custom HTML**
+#### Send an email message passing custom HTML
 
 ```ruby
 enveloop.send_message(
@@ -66,9 +67,7 @@ enveloop.send_message(
 )
 ```
 
-**Send a text/SMS message**
-_(As you can see, the structure of the `send_message` method is similar, but we simply swap out an email address for a mobile number. Also, the template used is an SMS template on the Enveloop platform.)_
-
+#### Send a text/SMS message
 ```ruby
 enveloop.send_message(
    template: 'registration-complete',
@@ -80,12 +79,33 @@ enveloop.send_message(
 )
 ```
 
-Get information about a template (variables and body HTML):
+_(As you can see, the structure of the `send_message` method is similar, but we simply swap out an email address for a mobile number. Also, the template used is an SMS template on the Enveloop platform.)_
+
+#### Get information about a template (variables and body HTML):
 
 ```ruby
 enveloop.template_info(template: 'welcome-email')
 ```
-### Rails
+
+### Ruby on Rails
+Using Enveloop with Ruby on Rails is easy as well. Here is a recommended approach for getting it set up in your Rails application.
+
+#### Update your initializer
+Add/update the following lines in your respective Rails environments file.
+
+```ruby
+unless Rails.env.production?
+  ENV['ENVELOOP_API_KEY'] = 'ENVELOOP_API_KEY'
+end
+
+config.action_mailer.delivery_method = :enveloop
+config.action_mailer.enveloop_settings = { 
+  api_key: ENV['ENVELOOP_API_TOKEN']
+}
+```
+
+
+
 
 Add the following to your initializer and send Active::Mailer messaegs with Enveloop as well
 
