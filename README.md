@@ -1,7 +1,10 @@
 # Enveloop Ruby
 Hello! 👋 `enveloop-ruby` is a Ruby wrapper for the [Enveloop](https://enveloop.com) API. It simplifies configuring and sending messages (email & SMS/text) via Enveloop inside your Ruby and Ruby on Rails apps.
 
-## Installation
+## What is Enveloop?
+Enveloop is a developer-focused message builder and API that makes it easy to design & send beautiful emails and texts from your app using a simple implementation. You can [sign up for free](https://app.enveloop.com) and be up and running in a couple of minutes!
+
+## Installing the Enveloop Ruby Gem
 There are a couple of ways to get started. Using [RubyGems](https://rubygems.org/), you can install it locally with the following command:
 ```console
 $ gem install enveloop
