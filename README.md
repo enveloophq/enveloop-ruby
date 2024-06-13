@@ -93,9 +93,10 @@ Using Enveloop with Ruby on Rails is easy as well. Here is a recommended approac
 Add/update the following lines in your respective Rails environments file.
 
 ```ruby
-unless Rails.env.production?
-  ENV['ENVELOOP_API_KEY'] = 'ENVELOOP_API_KEY'
-end
+
+# remember to never include production keys in files you check into repos.
+
+ENV['ENVELOOP_API_KEY'] = 'ENVELOOP_API_KEY'
 
 config.action_mailer.delivery_method = :enveloop
 
@@ -154,8 +155,9 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/enveloophq/enveloop-ruby. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/enveloophq/enveloop-ruby/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at https://github.com/enveloophq/enveloop-ruby.
 
+This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/enveloophq/enveloop-ruby/blob/master/CODE_OF_CONDUCT.md).
 
 ## License
 
