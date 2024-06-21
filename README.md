@@ -31,7 +31,6 @@ bundle install
 The Enveloop Gem includes helpful methods to interact with the Enveloop API, including:
 
 * `send_message`
-* `send_raw`
 * `template_info`
 
 We'll talk about how to use some of these methods in the notes to follow. 
